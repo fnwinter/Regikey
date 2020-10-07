@@ -173,7 +173,7 @@ namespace REGIKEY
         {
             try
             {
-                string target = "https://sites.google.com/site/vonstagemain/home/regikey";
+                string target = "https://github.com/fnwinter/Regikey";
                 Process.Start(target);
             }
             catch { }
@@ -303,8 +303,7 @@ namespace REGIKEY
 
         public static IntPtr hookProc(int code, IntPtr wParam, IntPtr lParam)
         {
-            if (code < 0)
-                return CallNextHookEx(hhook, code, (int)wParam, lParam);
+            if (code < 0) return CallNextHookEx(hhook, code, (int)wParam, lParam);
 
             int vkCode = Marshal.ReadInt32(lParam);
             currentPressedKey = vkCode;
