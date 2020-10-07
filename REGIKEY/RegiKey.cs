@@ -26,6 +26,8 @@ namespace REGIKEY
 
         static string currnet_path;
         static string ini_file_path;
+        static string log_file_path;
+        static StreamWriter log_file;
 
         const int WH_KEYBOARD_LL = 13;
         const int WM_KEYDOWN = 0x100;
@@ -60,7 +62,10 @@ namespace REGIKEY
         {
             currnet_path = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             ini_file_path = Path.Combine(currnet_path, "regikey.ini");
-            
+            log_file_path = Path.Combine(currnet_path, "regikey.log");
+
+            log_file = new StreamWriter(log_file_path);
+
             InitializeComponent();
             LoadINIFile();
             Apply();
@@ -68,6 +73,11 @@ namespace REGIKEY
             SetHook();
 
             Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
+        }
+
+        ~RegiKey()
+        {
+            log_file.Close();
         }
 
         private void CreateNotifyicon()
@@ -128,7 +138,7 @@ namespace REGIKEY
             try
             {
                 String line = edit_INIFile.Text;
-                System.IO.StreamWriter file = new System.IO.StreamWriter(ini_file_path);
+                StreamWriter file = new StreamWriter(ini_file_path);
                 file.WriteLine(line);
                 file.Close();
             }
@@ -289,12 +299,20 @@ namespace REGIKEY
                 {
                     matchCount++;
                 }
-                /*
-                for debugging
+                //*
+                //for debugging
+                String log1 = String.Format("KEY {0:G}, {1:G}, {2:G}, ", key[0], key[1], key[2]);
+                String log2 = String.Format("PressedKey {0:G}, {1:G}, {2:G}, ", PressedKey[0], PressedKey[1], PressedKey[2]);
+                String log3 = String.Format("MATCH {0:G}", key[3]);
+
+                log_file.WriteLine(log1);
+                log_file.WriteLine(log2);
+                log_file.WriteLine(log3);
+                log_file.Flush();
                 Console.WriteLine("KEY {0:G}, {1:G}, {2:G}, ", key[0], key[1], key[2]);
                 Console.WriteLine("PressedKey {0:G}, {1:G}, {2:G}, ", PressedKey[0], PressedKey[1], PressedKey[2]);
                 Console.WriteLine("MATCH {0:G}", key[3]);
-                */
+                //
                 if (count == matchCount)
                     return (uint)key[3];
             }
