@@ -23,6 +23,7 @@ namespace REGIKEY
         private System.Windows.Forms.NotifyIcon notifyIcon;
 
         static INIFileParser parser = new INIFileParser();
+        private VKKeyCodes keyCode = new VKKeyCodes();
 
         static string currnet_path;
         static string ini_file_path;
@@ -67,6 +68,9 @@ namespace REGIKEY
             log_file = new StreamWriter(log_file_path);
 
             InitializeComponent();
+
+            FillComboItems();
+
             LoadINIFile();
             Apply();
             CreateNotifyicon();
@@ -129,6 +133,14 @@ namespace REGIKEY
                 file.Close();
             }
             catch { }
+        }
+
+        private void FillComboItems()
+        {
+            foreach(VKKeyInfo item in keyCode.mKeys)
+            {
+                comboBox1.Items.Add(item.description);
+            }
         }
 
         private void SaveINIFile()
