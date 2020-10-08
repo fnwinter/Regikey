@@ -29,15 +29,15 @@ namespace REGIKEY
         {
             mKeys.Clear();
 
-            string pattern = @"(\w*)(\+?)(\w*)(\+?)(\w*)(->)(\w*)";
+            string pattern = @"(\s*\w*\s*)(\+?)(\s*\w*\s*)(\+?)(\s*\w*\s*)(->)(\s*\w*\s*)";
             MatchCollection matches = Regex.Matches(text, pattern);
             foreach (Match match in matches)
             {
                 KeyInfo k = new KeyInfo();
-                k.firstKey = match.Groups[1].Value.ToUpper();
-                k.secondKey = match.Groups[3].Value.ToUpper();
-                k.thirdKey = match.Groups[5].Value.ToUpper();
-                k.matchedKey = match.Groups[7].Value.ToUpper();
+                k.firstKey = match.Groups[1].Value.ToUpper().Trim();
+                k.secondKey = match.Groups[3].Value.ToUpper().Trim();
+                k.thirdKey = match.Groups[5].Value.ToUpper().Trim();
+                k.matchedKey = match.Groups[7].Value.ToUpper().Trim();
                 mKeys.Add(k);
             }
         }

@@ -34,7 +34,6 @@
             this.button_apply = new System.Windows.Forms.Button();
             this.button_save = new System.Windows.Forms.Button();
             this.link_webpage = new System.Windows.Forms.LinkLabel();
-            this.label_webpage = new System.Windows.Forms.Label();
             this.button_startup = new System.Windows.Forms.Button();
             this.button_check_vkeys = new System.Windows.Forms.Button();
             this.link_vkcode_page = new System.Windows.Forms.LinkLabel();
@@ -117,15 +116,6 @@
             this.link_webpage.Text = "https://github.com/fnwinter/Regikey";
             this.link_webpage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_webpage_LinkClicked);
             // 
-            // label_webpage
-            // 
-            this.label_webpage.AutoSize = true;
-            this.label_webpage.Location = new System.Drawing.Point(200, 299);
-            this.label_webpage.Name = "label_webpage";
-            this.label_webpage.Size = new System.Drawing.Size(49, 12);
-            this.label_webpage.TabIndex = 0;
-            this.label_webpage.Text = "Usage :";
-            // 
             // button_startup
             // 
             this.button_startup.Location = new System.Drawing.Point(12, 326);
@@ -167,8 +157,8 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(560, 44);
             this.textBox1.TabIndex = 14;
-            this.textBox1.Text = "Example ) [KEY] + [KEY] + ... -> [TARGET_KEY]\r\n\r\nVK_LSHIFT + VK_SPACE -> VK_HANGU" +
-    "L\r\n";
+            this.textBox1.Text = "e.g ) [KEY] + [KEY] + [KEY] -> [TARGET_KEY]\r\n\r\nVK_LSHIFT + VK_SPACE -> VK_HANGUL\r" +
+    "\n";
             // 
             // label1
             // 
@@ -397,7 +387,6 @@
             this.Controls.Add(this.link_vkcode_page);
             this.Controls.Add(this.button_check_vkeys);
             this.Controls.Add(this.button_startup);
-            this.Controls.Add(this.label_webpage);
             this.Controls.Add(this.link_webpage);
             this.Controls.Add(this.button_save);
             this.Controls.Add(this.button_apply);
@@ -425,7 +414,6 @@
         private System.Windows.Forms.Button button_apply;
         private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.LinkLabel link_webpage;
-        private System.Windows.Forms.Label label_webpage;
         private System.Windows.Forms.Button button_startup;
         private System.Windows.Forms.Button button_check_vkeys;
         private System.Windows.Forms.LinkLabel link_vkcode_page;
