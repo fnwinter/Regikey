@@ -69,7 +69,18 @@ namespace REGIKEY
 
             InitializeComponent();
 
-            FillComboItems();
+            FillComboItems(ref comboBox1);
+            FillComboItems(ref comboBox2);
+            FillComboItems(ref comboBox3);
+            FillComboItems(ref comboBox4);
+            FillComboItems(ref comboBox5);
+            FillComboItems(ref comboBox6);
+            FillComboItems(ref comboBox7);
+            FillComboItems(ref comboBox8);
+            FillComboItems(ref comboBox9);
+            FillComboItems(ref comboBox10);
+            FillComboItems(ref comboBox11);
+            FillComboItems(ref comboBox12);
 
             LoadINIFile();
             Apply();
@@ -135,11 +146,11 @@ namespace REGIKEY
             catch { }
         }
 
-        private void FillComboItems()
+        private void FillComboItems(ref ComboBox combo)
         {
             foreach(VKKeyInfo item in keyCode.mKeys)
             {
-                comboBox1.Items.Add(item.description);
+                combo.Items.Add(item.description);
             }
         }
 
