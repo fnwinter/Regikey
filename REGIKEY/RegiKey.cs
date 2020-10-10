@@ -17,13 +17,14 @@ namespace REGIKEY
 {
     public partial class RegiKey : Form
     {
-        private System.Windows.Forms.ContextMenu contextMenu;
-        private System.Windows.Forms.MenuItem menuItem_show;
-        private System.Windows.Forms.MenuItem menuItem_exit;
-        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private ContextMenu contextMenu;
+        private MenuItem menuItem_show;
+        private MenuItem menuItem_exit;
+        private NotifyIcon notifyIcon;
 
         static INIFileParser parser = new INIFileParser();
         private VKKeyCodes keyCode = new VKKeyCodes();
+        public Dictionary<String, String> mComboDic = new Dictionary<String, String>();
 
         static string currnet_path;
         static string ini_file_path;
@@ -69,6 +70,8 @@ namespace REGIKEY
 
             InitializeComponent();
 
+            LoadINIFile();
+
             InitilaizeComboBox(ref comboBox1);
             InitilaizeComboBox(ref comboBox2);
             InitilaizeComboBox(ref comboBox3);
@@ -81,8 +84,8 @@ namespace REGIKEY
             InitilaizeComboBox(ref comboBox10);
             InitilaizeComboBox(ref comboBox11);
             InitilaizeComboBox(ref comboBox12);
+            UpdateCombobox();
 
-            LoadINIFile();
             Apply();
             CreateNotifyicon();
             SetHook();
@@ -138,7 +141,15 @@ namespace REGIKEY
                 ArrayList list = new ArrayList();
                 while ((line = file.ReadLine()) != null)
                 {
-                    list.Add(line);
+                    if (line.Contains("COMBOBOX"))
+                    {
+                        String[] item = line.Split('=');
+                        mComboDic.Add(item[0], item[1]);
+                    }
+                    else
+                    {
+                        list.Add(line);
+                    }
                 }
                 edit_INIFile.Text = String.Join("\n", list.ToArray());
                 file.Close();
@@ -156,6 +167,12 @@ namespace REGIKEY
             combo.SelectedIndex = 0;
         }
 
+
+        private void UpdateCombobox()
+        {
+
+        }
+
         private void SaveINIFile()
         {
             string currnet_path = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
@@ -164,6 +181,20 @@ namespace REGIKEY
             {
                 String line = edit_INIFile.Text;
                 StreamWriter file = new StreamWriter(ini_file_path);
+
+                file.WriteLine("COMBOBOX1=" + comboBox1.Text);
+                file.WriteLine("COMBOBOX2=" + comboBox2.Text);
+                file.WriteLine("COMBOBOX3=" + comboBox3.Text);
+                file.WriteLine("COMBOBOX4=" + comboBox4.Text);
+                file.WriteLine("COMBOBOX5=" + comboBox5.Text);
+                file.WriteLine("COMBOBOX6=" + comboBox6.Text);
+                file.WriteLine("COMBOBOX7=" + comboBox7.Text);
+                file.WriteLine("COMBOBOX8=" + comboBox8.Text);
+                file.WriteLine("COMBOBOX9=" + comboBox9.Text);
+                file.WriteLine("COMBOBOX10=" + comboBox10.Text);
+                file.WriteLine("COMBOBOX11=" + comboBox11.Text);
+                file.WriteLine("COMBOBOX12=" + comboBox12.Text);
+
                 file.WriteLine(line);
                 file.Close();
             }

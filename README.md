@@ -2,6 +2,9 @@
   * Regikey 는 레지스트리를 수정하지 않고 키맵핑을 할 때 사용합니다.
   * 개인적으로 일본 키보드가 있어서 이를 한글 키보드로 맵핑할 때 사용하고 있습니다.
 
+* History
+  * 2020-10-11 : -
+
 * Screenshot
   * ![Screenshot](/Installer/Screenshot.JPG)
 
