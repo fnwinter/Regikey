@@ -50,7 +50,7 @@ namespace REGIKEY
             mKeys.Add(new VKKeyInfo("VK_FINAL", 0x18, "IME final"));
             mKeys.Add(new VKKeyInfo("VK_HANJA", 0x19, "IME Hanja"));
 
-            mKeys.Add(new VKKeyInfo("VK_ESCAPE", 0x1B, "ESC key"));
+            mKeys.Add(new VKKeyInfo("VK_ESCAPE", 0x1B, "ESC"));
             mKeys.Add(new VKKeyInfo("VK_CONVERT", 0x1C, "IME convert"));
             mKeys.Add(new VKKeyInfo("VK_NONCONVERT", 0x1D, "IME nonconvert"));
             mKeys.Add(new VKKeyInfo("VK_ACCEPT", 0x1E, "IME accept"));
@@ -76,7 +76,7 @@ namespace REGIKEY
             for (int i = 0x30; i < 0x3A; i++)
             {
                 String name = String.Format("VK_{0}", i);
-                String description = String.Format("{0}", i);
+                String description = String.Format("{0}", i - 0x30);
                 mKeys.Add(new VKKeyInfo(name, i, description));
             }
 
@@ -104,12 +104,12 @@ namespace REGIKEY
             mKeys.Add(new VKKeyInfo("VK_NUMPAD8", 0x68, "Num 8"));
             mKeys.Add(new VKKeyInfo("VK_NUMPAD9", 0x69, "Num 9"));
 
-            mKeys.Add(new VKKeyInfo("VK_MULTIPLY", 0x6A, "*"));
-            mKeys.Add(new VKKeyInfo("VK_ADD", 0x6B, "+"));
-            mKeys.Add(new VKKeyInfo("VK_SEPARATOR", 0x6C, "|"));
-            mKeys.Add(new VKKeyInfo("VK_SUBTRACT", 0x6D, "-"));
-            mKeys.Add(new VKKeyInfo("VK_DECIMAL", 0x6E, "."));
-            mKeys.Add(new VKKeyInfo("VK_DIVIDE", 0x6F, "/"));
+            mKeys.Add(new VKKeyInfo("VK_MULTIPLY", 0x6A, "[ * ]"));
+            mKeys.Add(new VKKeyInfo("VK_ADD", 0x6B, "[ + ]"));
+            mKeys.Add(new VKKeyInfo("VK_SEPARATOR", 0x6C, "[ | ]"));
+            mKeys.Add(new VKKeyInfo("VK_SUBTRACT", 0x6D, "[ - ]"));
+            mKeys.Add(new VKKeyInfo("VK_DECIMAL", 0x6E, "[ . ]"));
+            mKeys.Add(new VKKeyInfo("VK_DIVIDE", 0x6F, "[ / ]"));
 
             // Function keys
             for (int i = 0x70; i < 0x88; i++)
@@ -149,20 +149,19 @@ namespace REGIKEY
             mKeys.Add(new VKKeyInfo("VK_LAUNCH_APP1", 0xB6, "Start Application 1"));
             mKeys.Add(new VKKeyInfo("VK_LAUNCH_APP2", 0xB7, "Start Application 2"));
 
-            mKeys.Add(new VKKeyInfo("VK_OEM_1", 0xBA, "Used for miscellaneous characters"));
-            mKeys.Add(new VKKeyInfo("VK_OEM_PLUS", 0xBB, "For any country/region, the '+' key"));
-            mKeys.Add(new VKKeyInfo("VK_OEM_COMMA", 0xBC, "For any country/region, the ',' key"));
-            mKeys.Add(new VKKeyInfo("VK_OEM_MINUS", 0xBD, "For any country/region, the '-' key"));
-            mKeys.Add(new VKKeyInfo("VK_OEM_PERIOD", 0xBE, "For any country/region, the '.' key"));
-            mKeys.Add(new VKKeyInfo("VK_OEM_2", 0xBF, "?"));
-            mKeys.Add(new VKKeyInfo("VK_OEM_3", 0xC0, "~"));
-            mKeys.Add(new VKKeyInfo("VK_OEM_4", 0xDB, "[{"));
-            mKeys.Add(new VKKeyInfo("VK_OEM_5", 0xDC, "\\|"));
-            mKeys.Add(new VKKeyInfo("VK_OEM_6", 0xDD, "]}"));
-            mKeys.Add(new VKKeyInfo("VK_OEM_7", 0xDE, "\"\'"));
-            mKeys.Add(new VKKeyInfo("VK_OEM_8", 0xDF, "Used for miscellaneous characters"));
-            mKeys.Add(new VKKeyInfo("VK_OEM_102", 0xE2,
-                "Either the angle bracket key or the backslash key on the RT 102-key keyboard"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_1", 0xBA, "OEM [ ; ]"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_PLUS", 0xBB, "OEM [ + ]"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_COMMA", 0xBC, "OEM [ , ]"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_MINUS", 0xBD, "OEM [ - ]"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_PERIOD", 0xBE, "OEM [ . ]"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_2", 0xBF, "OEM [ ? ]"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_3", 0xC0, "OEM [ ~ ]"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_4", 0xDB, "OEM [ [{ ]"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_5", 0xDC, "OEM [ \\| ]"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_6", 0xDD, "OEM [ ]} ]"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_7", 0xDE, "OEM [ \"\' ]"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_8", 0xDF, "VK_OEM_8"));
+            mKeys.Add(new VKKeyInfo("VK_OEM_102", 0xE2, "VK_OEM_102"));
 
             mKeys.Add(new VKKeyInfo("VK_PROCESSKEY", 0xE5, "IME PROCESS key"));
             mKeys.Add(new VKKeyInfo("VK_PACKET", 0xE7, "VK_PACKET"));
@@ -182,11 +181,6 @@ namespace REGIKEY
             if (name == "")
                 return -1;
 
-            if (name.Contains("0X"))
-            {
-                int value = (int)new Int32Converter().ConvertFromString(name);
-                return value;
-            }
             foreach(VKKeyInfo key in mKeys)
             {
                 if (key.name == name)

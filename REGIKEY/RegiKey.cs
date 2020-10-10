@@ -69,18 +69,18 @@ namespace REGIKEY
 
             InitializeComponent();
 
-            FillComboItems(ref comboBox1);
-            FillComboItems(ref comboBox2);
-            FillComboItems(ref comboBox3);
-            FillComboItems(ref comboBox4);
-            FillComboItems(ref comboBox5);
-            FillComboItems(ref comboBox6);
-            FillComboItems(ref comboBox7);
-            FillComboItems(ref comboBox8);
-            FillComboItems(ref comboBox9);
-            FillComboItems(ref comboBox10);
-            FillComboItems(ref comboBox11);
-            FillComboItems(ref comboBox12);
+            InitilaizeComboBox(ref comboBox1);
+            InitilaizeComboBox(ref comboBox2);
+            InitilaizeComboBox(ref comboBox3);
+            InitilaizeComboBox(ref comboBox4);
+            InitilaizeComboBox(ref comboBox5);
+            InitilaizeComboBox(ref comboBox6);
+            InitilaizeComboBox(ref comboBox7);
+            InitilaizeComboBox(ref comboBox8);
+            InitilaizeComboBox(ref comboBox9);
+            InitilaizeComboBox(ref comboBox10);
+            InitilaizeComboBox(ref comboBox11);
+            InitilaizeComboBox(ref comboBox12);
 
             LoadINIFile();
             Apply();
@@ -146,12 +146,14 @@ namespace REGIKEY
             catch { }
         }
 
-        private void FillComboItems(ref ComboBox combo)
+        private void InitilaizeComboBox(ref ComboBox combo)
         {
-            foreach(VKKeyInfo item in keyCode.mKeys)
+            combo.Items.Add("None");
+            foreach (VKKeyInfo item in keyCode.mKeys)
             {
                 combo.Items.Add(item.description);
             }
+            combo.SelectedIndex = 0;
         }
 
         private void SaveINIFile()
