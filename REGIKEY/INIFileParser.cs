@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 namespace REGIKEY
@@ -38,7 +35,8 @@ namespace REGIKEY
                 k.secondKey = match.Groups[3].Value.ToUpper().Trim();
                 k.thirdKey = match.Groups[5].Value.ToUpper().Trim();
                 k.matchedKey = match.Groups[7].Value.ToUpper().Trim();
-                mKeys.Add(k);
+
+                if (k.matchedKey != "") mKeys.Add(k);
             }
         }
 
