@@ -3,7 +3,7 @@
   * 개인적으로 일본 키보드가 있어서 이를 한글 키보드로 맵핑할 때 사용하고 있습니다.
 
 * History
-  * 2020-10-11 : -
+  * 2020-10-13 : First release
 
 * Screenshot
   * ![Screenshot](/Installer/Screenshot.JPG)

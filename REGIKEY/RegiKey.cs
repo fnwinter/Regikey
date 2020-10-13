@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
@@ -374,24 +368,32 @@ namespace REGIKEY
                 {
                     matchCount++;
                 }
-                //*
-                //for debugging
-                String log1 = String.Format("KEY {0:G}, {1:G}, {2:G}, ", key[0], key[1], key[2]);
-                String log2 = String.Format("PressedKey {0:G}, {1:G}, {2:G}, ", PressedKey[0], PressedKey[1], PressedKey[2]);
-                String log3 = String.Format("MATCH {0:G}", key[3]);
 
-                log_file.WriteLine(log1);
-                log_file.WriteLine(log2);
-                log_file.WriteLine(log3);
-                log_file.Flush();
-                Console.WriteLine("KEY {0:G}, {1:G}, {2:G}, ", key[0], key[1], key[2]);
-                Console.WriteLine("PressedKey {0:G}, {1:G}, {2:G}, ", PressedKey[0], PressedKey[1], PressedKey[2]);
-                Console.WriteLine("MATCH {0:G}", key[3]);
-                //
+                // WriteLog(key);
+
                 if (count == matchCount)
                     return (uint)key[3];
             }
             return 0x00;
+        }
+
+        private static void WriteLog(int[] key)
+        {
+            String registed_key_log = String.Format("Registred KEY {0:X2}, {1:X2}, {2:X2}, ", key[0], key[1], key[2]);
+            String pressed_key_log = String.Format("Pressed KEY {0:X2}, {1:X2}, {2:X2}, ", PressedKey[0], PressedKey[1], PressedKey[2]);
+            String matched_key_log = String.Format("Matched KEY {0:X2}", key[3]);
+            String split_line = "-----------------------------------";
+
+            log_file.WriteLine(registed_key_log);
+            log_file.WriteLine(pressed_key_log);
+            log_file.WriteLine(matched_key_log);
+            log_file.WriteLine(split_line);
+            log_file.Flush();
+
+            Console.WriteLine(registed_key_log);
+            Console.WriteLine(pressed_key_log);
+            Console.WriteLine(matched_key_log);
+            Console.WriteLine(split_line);
         }
 
         public static IntPtr hookProc(int code, IntPtr wParam, IntPtr lParam)
