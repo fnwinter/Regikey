@@ -42,6 +42,17 @@ namespace REGIKEY
             }
         }
 
+        public void ApplyKeys(String first, String second, String third, String match)
+        {
+            KeyInfo k = new KeyInfo();
+            k.firstKey = keyInfos.getKeyValueByDesc(first);
+            k.secondKey = keyInfos.getKeyValueByDesc(second);
+            k.thirdKey = keyInfos.getKeyValueByDesc(third);
+            k.matchedKey = keyInfos.getKeyValueByDesc(match);
+
+            if (k.matchedKey != "Not found") mKeys.Add(k);
+        }
+
         public void MakeHandler()
         {
             foreach (KeyInfo key in mKeys)

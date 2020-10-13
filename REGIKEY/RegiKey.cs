@@ -24,7 +24,7 @@ namespace REGIKEY
 
         static INIFileParser parser = new INIFileParser();
         private VKKeyCodes keyCode = new VKKeyCodes();
-        public Dictionary<String, String> mComboDic = new Dictionary<String, String>();
+        public Dictionary<String, String> mComboboxData = new Dictionary<String, String>();
 
         static string currnet_path;
         static string ini_file_path;
@@ -144,7 +144,7 @@ namespace REGIKEY
                     if (line.Contains("COMBOBOX"))
                     {
                         String[] item = line.Split('=');
-                        mComboDic.Add(item[0], item[1]);
+                        mComboboxData.Add(item[0], item[1]);
                     }
                     else
                     {
@@ -170,7 +170,21 @@ namespace REGIKEY
 
         private void UpdateCombobox()
         {
-
+            foreach (KeyValuePair<String, String> item in mComboboxData)
+            {
+                if (item.Key == "COMBOBOX1") comboBox1.Text = item.Value;
+                if (item.Key == "COMBOBOX2") comboBox2.Text = item.Value;
+                if (item.Key == "COMBOBOX3") comboBox3.Text = item.Value;
+                if (item.Key == "COMBOBOX4") comboBox4.Text = item.Value;
+                if (item.Key == "COMBOBOX5") comboBox5.Text = item.Value;
+                if (item.Key == "COMBOBOX6") comboBox6.Text = item.Value;
+                if (item.Key == "COMBOBOX7") comboBox7.Text = item.Value;
+                if (item.Key == "COMBOBOX8") comboBox8.Text = item.Value;
+                if (item.Key == "COMBOBOX9") comboBox9.Text = item.Value;
+                if (item.Key == "COMBOBOX10") comboBox10.Text = item.Value;
+                if (item.Key == "COMBOBOX11") comboBox11.Text = item.Value;
+                if (item.Key == "COMBOBOX12") comboBox12.Text = item.Value;
+            }
         }
 
         private void SaveINIFile()
@@ -205,6 +219,11 @@ namespace REGIKEY
         {
             String edtLine = edit_INIFile.Text;
             parser.Parse(edtLine.Replace("  ", string.Empty));
+
+            parser.ApplyKeys(comboBox1.Text, comboBox2.Text, comboBox3.Text, comboBox4.Text);
+            parser.ApplyKeys(comboBox5.Text, comboBox6.Text, comboBox7.Text, comboBox8.Text);
+            parser.ApplyKeys(comboBox9.Text, comboBox10.Text, comboBox11.Text, comboBox12.Text);
+
             parser.MakeHandler();
         }
 

@@ -189,6 +189,16 @@ namespace REGIKEY
             return -1;
         }
 
+        public String getKeyValueByDesc(String desc)
+        {
+            foreach(VKKeyInfo key in mKeys)
+            {
+                if (key.description == desc)
+                    return key.name;
+            }
+            return "Not found";
+        }
+
         public String getKeyName(int value)
         {
             foreach (VKKeyInfo key in mKeys)
